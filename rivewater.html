@@ -1,0 +1,120 @@
+<html>
+    <head>
+        <title>RIVER WATER PREDICTION</title>
+        <style>
+            h1
+            {
+                color:crimson;
+                text-align: center;
+            }
+            h2
+            {
+                color:blue;
+                text-align: center;
+            }
+            h3
+            {
+              color:magenta;
+              margin-left: 30%;
+                font-size:30px;
+                font-weight: bolder;
+            }
+            h4
+            {
+                text-align: center;
+                font-size: 25px;
+                color:chartreuse;
+                font-weight: bolder;
+            }
+            #turbidity,#ph
+            {
+                color:yellow;
+                text-align: center;
+            }
+            body
+            {
+                background-image:url("vaigairiver.jpg");
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+            #result
+            {
+                color:greenyellow;
+              margin-left: 30%;
+                font-size:30px;
+                font-weight: bolder;
+            }
+            button {
+                margin-left: 40%;
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+        </style>
+    </head>
+    <body>
+        <h1>REAL TIME -RIVER WATER QUALITY MONITORING SYSTEM</h1>
+        <h4 id="date"></h4>
+        <button onclick="reload();return false">LIVE DATA</button>
+    </BR>
+    </BR>
+        <h2>River : Vaigai - Connecting Range (From Theni , Bodinayakanur to Madurai Western Gateway)</h2>
+    </BR>
+    </BR>
+        <h3>Current Turbidity Level: </h3> <h3 id="ph"></h3>
+        <h3>Current pH Level: </h3> <h3 id="turbidity"></h3>
+        <button onclick="check();return false">PREDICT</button>
+        <h2 id="result"></h2>
+        <h4>DEVELOPED BY TEAM ID: PNT2022TMID21316</H4>
+        <script>
+            function reload()
+            {
+                location.reload();
+            }
+             function playaudio()
+            {
+                
+                const music = new Audio('alert.mp3');
+                music.play();
+                music.loop=true;
+            }
+            const pH=[7,8,8.5,7.5,5,10,6.5,8.5,8.6,10];
+            const turb=[6,8,3,17,8,12,20,30,18,16];
+            var phindex=Math.floor(Math.random() * 10);
+            var turbindex=Math.floor(Math.random() * 10);
+            var ph=pH[phindex];
+            var turbvalue=turb[turbindex];
+            document.getElementById('turbidity').innerHTML=ph;
+            document.getElementById('ph').innerHTML=turbvalue+" ntu";
+           function check()
+           {
+          
+            if(ph<6.5 || ph>8.5)
+            {
+                document.getElementById('result').style.color="red";
+                document.getElementById('result').innerHTML="DANGER ZONE";
+                playaudio();
+            }
+             else if(turbvalue<5 || turbvalue >15)
+            {
+                document.getElementById('result').style.color="red";
+                document.getElementById('result').innerHTML="DANGER ZONE";
+                playaudio();
+            }
+            else
+            {
+                document.getElementById('result').innerHTML="SAFE ZONE";
+            }
+           }
+           const d = new Date();
+            document.getElementById("date").innerHTML = d;
+        </script>
+    </body>
+</html>
